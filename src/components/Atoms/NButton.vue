@@ -1,11 +1,17 @@
 <template>
-  <button class="button">
+  <button class="button" :class="{ button__round: round }">
     <slot />
   </button>
 </template>
 <script>
 export default {
-  name: "NButton"
+  name: "NButton",
+  props: {
+    round: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 <style scoped lang="scss">
@@ -31,6 +37,16 @@ export default {
   outline: none;
   cursor: pointer;
   transition: box-shadow 0.2s;
+
+  &__round {
+    width: 50px;
+    line-height: 50px;
+    height: 50px;
+    font-size: 25px;
+    padding: 0;
+    min-width: auto;
+    border-radius: 60px;
+  }
 }
 
 .button::-moz-focus-inner {

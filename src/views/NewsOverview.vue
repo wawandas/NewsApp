@@ -2,14 +2,15 @@
   <div class="view">
     <div class="controls">
       <TextField v-model="search" placeholder="Filter news by title" />
-      <SortingBlock
+      <NButton @click="toggleFormVisibility" round> + </NButton>
+      <NSorting
         :items="sortingItems"
         :sortedBy="sortedBy"
         :direction="direction"
         @sort="handleSorting"
       />
     </div>
-    <form class="form" @submit.prevent>
+    <form v-if="isFormVisible" class="form" @submit.prevent>
       <TextField
         class="form__field"
         v-model="form.title"
@@ -27,7 +28,7 @@
       />
       <NButton @click="handleSubmit"> Add news </NButton>
     </form>
-    <NewsCard
+    <NCard
       v-for="newsItem in filteredAndSortedItems"
       :key="newsItem.id"
       :title="newsItem.title"
@@ -36,16 +37,16 @@
       @click="handleNavigation(newsItem.id)"
       class="edit-news-card"
     >
-    </NewsCard>
+    </NCard>
   </div>
 </template>
 
 <script>
-import NewsCard from "@/components/Atoms/NewsCard.vue";
+import NCard from "@/components/Atoms/NCard.vue";
 import TextField from "@/components/Atoms/TextField.vue";
 import TextArea from "@/components/Atoms/TextArea.vue";
 import NButton from "@/components/Atoms/NButton.vue";
-import SortingBlock from "@/components/Atoms/SortingBlock.vue";
+import NSorting from "@/components/Atoms/NSorting.vue";
 import uniqid from "uniqid";
 
 import { mapState, mapMutations } from "vuex";
@@ -53,11 +54,11 @@ import { mapState, mapMutations } from "vuex";
 export default {
   name: "NewsOverview",
   component: {
-    NewsCard,
+    NButton,
+    NCard,
     TextField,
-    SortingBlock,
-    TextArea,
-    NButton
+    NSorting,
+    TextArea
   },
   data() {
     return {
@@ -66,6 +67,7 @@ export default {
         body: "",
         author: ""
       },
+      isFormVisible: false,
       search: "",
       sortedBy: "",
       direction: "asc",
@@ -73,9 +75,9 @@ export default {
     };
   },
   components: {
-    NewsCard,
+    NCard,
     TextField,
-    SortingBlock,
+    NSorting,
     TextArea,
     NButton
   },
@@ -111,6 +113,9 @@ export default {
     },
     handleNavigation(id) {
       this.$router.push({ name: "edit", params: { id } });
+    },
+    toggleFormVisibility() {
+      this.isFormVisible = !this.isFormVisible;
     }
   }
 };

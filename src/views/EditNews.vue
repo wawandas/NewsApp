@@ -20,7 +20,9 @@
       <NButton @click="handleSubmit"> Edit </NButton>
     </form>
 
-    <router-link to="/overview"> go to overview </router-link>
+    <router-link to="/overview">
+      <NButton class="button__back"> go to overview </NButton>
+    </router-link>
   </div>
 </template>
 
@@ -84,5 +86,10 @@ export default {
   &__field {
     margin-bottom: 20px;
   }
+}
+
+.button__back {
+  background-color: transparent;
+  color: #000;
 }
 </style>

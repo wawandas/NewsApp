@@ -1,8 +1,7 @@
 <template>
   <nav>
-    <a href="#" class="home">Home</a>
-    <a href="#" class="projects">News edit</a>
-    <a href="#" class="services">Contact</a>
+    <router-link to="/home"> Home</router-link>
+    <router-link to="/overview"> News overview </router-link>
   </nav>
 </template>
 
@@ -12,16 +11,6 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-a,
-a:visited {
-  outline: none;
-  color: #389dc1;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
 nav {
   display: flex;
   background-color: #5597b4;
@@ -45,18 +34,7 @@ nav a {
   transition: background-color 0.25s;
 }
 
-nav a:first-child {
-  border-radius: 2px 0 0 2px;
-}
-
-nav a:last-child {
-  border-radius: 0 2px 2px 0;
-}
-
-nav.home .home,
-nav.projects .projects,
-nav.services .services,
-nav.contact .contact {
-  background-color: #e35885;
+.router-link-active {
+  background-color: #52b0d1;
 }
 </style>
