@@ -42,11 +42,13 @@
 </template>
 
 <script>
-import NCard from "@/components/Atoms/NCard.vue";
 import TextField from "@/components/Atoms/TextField.vue";
 import TextArea from "@/components/Atoms/TextArea.vue";
 import NButton from "@/components/Atoms/NButton.vue";
-import NSorting from "@/components/Atoms/NSorting.vue";
+
+import NCard from "@/components/Layout/NCard.vue";
+import NSorting from "@/components/Layout/NSorting.vue";
+
 import uniqid from "uniqid";
 
 import { mapState, mapMutations } from "vuex";
